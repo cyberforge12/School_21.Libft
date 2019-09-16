@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_len.c                                      :+:      :+:    :+:   */
+/*   ft_clear_table.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jconcent <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/16 16:33:19 by jconcent          #+#    #+#             */
-/*   Updated: 2019/09/16 16:44:29 by jconcent         ###   ########.fr       */
+/*   Created: 2019/09/16 16:55:39 by jconcent          #+#    #+#             */
+/*   Updated: 2019/09/16 17:04:05 by jconcent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t		ft_list_len(t_list *alst)
+void	*ft_clear_table(char **array, int i)
 {
-	size_t len;
+	int n;
 
-	len = 0;
-	if (alst)
-		while (alst)
-		{
-			len++;
-			alst = alst->next;
-		}
-	return (len);
+	n = 0;
+	while (n < i)
+		free(array[n++]);
+	free(array);
+	return (0);
 }

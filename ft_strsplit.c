@@ -6,7 +6,7 @@
 /*   By: jconcent <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 12:29:07 by jconcent          #+#    #+#             */
-/*   Updated: 2019/09/11 14:01:06 by jconcent         ###   ########.fr       */
+/*   Updated: 2019/09/16 16:59:42 by jconcent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static char		**ft_split_creator(char const *s, char c,
 		if (s[i] != c && s[i])
 		{
 			if (!(sp_s[j] = (char *)malloc(sizeof(**sp_s) * max_word_len + 1)))
-				return (NULL);
+				return (ft_clear_table(sp_s, j));
 			while (s[i] != c && s[i])
 				sp_s[j][k++] = s[i++];
 			sp_s[j++][k] = '\0';

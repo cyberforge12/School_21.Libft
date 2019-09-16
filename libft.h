@@ -6,7 +6,7 @@
 /*   By: jconcent <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 13:49:56 by jconcent          #+#    #+#             */
-/*   Updated: 2019/09/14 18:08:10 by gleidan          ###   ########.fr       */
+/*   Updated: 2019/09/16 17:00:36 by jconcent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,10 @@ void			ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 void			ft_lstpushback(t_list **begin_list, t_list *new);
 int				ft_isspace(int c);
-void            ft_clear_list(t_list *lst);
-size_t          ft_list_len(t_list *alst);
-void            ft_strsort(char *str);
-void            ft_swap(char *a, char *b);
+void			ft_clear_list(t_list *lst);
+size_t			ft_list_len(t_list *alst);
+void			ft_strsort(char *str);
+void			ft_swap(char *a, char *b);
+void			*ft_clear_table(char **array, int i);
 
 #endif

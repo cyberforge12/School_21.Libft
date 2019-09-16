@@ -6,7 +6,7 @@
 /*   By: jconcent <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 12:26:18 by jconcent          #+#    #+#             */
-/*   Updated: 2019/09/14 16:48:46 by gleidan          ###   ########.fr       */
+/*   Updated: 2019/09/16 16:45:58 by jconcent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		ft_atoi(const char *str)
 	size_t			i;
 	unsigned long	res;
 	unsigned long	overflow;
-	int             sign;
+	int				sign;
 
 	i = 0;
 	res = 0;
