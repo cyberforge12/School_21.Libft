@@ -20,7 +20,7 @@ static char		**ft_split_creator(char const *s, char c,
 	int		j;
 	int		k;
 
-	if (!(sp_s = (char **)malloc(sizeof(*sp_s) * word_count + 1)))
+	if (!(sp_s = (char **)malloc(sizeof(*sp_s) * (word_count + 1))))
 		return (NULL);
 	i = 0;
 	j = 0;
@@ -31,7 +31,8 @@ static char		**ft_split_creator(char const *s, char c,
 			i++;
 		if (s[i] != c && s[i])
 		{
-			if (!(sp_s[j] = (char *)malloc(sizeof(**sp_s) * max_word_len + 1)))
+			if (!(sp_s[j] = (char *)malloc(sizeof(**sp_s) * (max_word_len +
+					1))))
 				return (ft_clear_table(sp_s, j));
 			while (s[i] != c && s[i])
 				sp_s[j][k++] = s[i++];
