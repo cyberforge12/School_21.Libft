@@ -88,5 +88,6 @@ size_t			ft_list_len(t_list *alst);
 void			ft_strsort(char *str);
 void			ft_swap(char *a, char *b);
 void			*ft_clear_table(char **array, int i);
+int				ft_printf(const char *str, ...);
 
 #endif
