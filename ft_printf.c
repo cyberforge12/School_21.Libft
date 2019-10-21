@@ -93,7 +93,7 @@ static void 	check_conversion(const char **str, t_params *params)
 	int 	i;
 
 	i = -1;
-	while (++i < 10)
+	while (++i < 11)
 	{
 		if (**str == types[i])
 		{
@@ -142,9 +142,12 @@ void 	do_format(t_params *params, va_list args)
 	{
 		params->width -= len;
 		buf = ft_strnew(params->width);
-		ft_memset(buf, ' ', params->width);
+		ft_memset(buf, params->pad, params->width);
 		tmp = params->ret;
-		params->ret = ft_strjoin(buf, params->ret);
+		if (params->left)
+			params->ret = ft_strjoin(params->ret, buf);
+		else
+			params->ret = ft_strjoin(buf, params->ret);
 		free(tmp);
 		free(buf);
 	}
@@ -176,7 +179,7 @@ int		ft_printf(const char *str, ...)
 		{
 			str++;
 			default_params(&params);
-			while (1)
+			while (*str)
 			{
 				if (ft_strchr(flags, *str))
 					check_flags(&str, &params);
@@ -185,9 +188,10 @@ int		ft_printf(const char *str, ...)
 				else if (ft_strchr(length, *str))
 					check_length(&str, &params);
 				else if (ft_strchr(conv, *str))
+				{
 					check_conversion(&str, &params);
-				else
 					break;
+				}
 			}
 			do_format(&params, args);
 			ft_putstr(params.ret);
