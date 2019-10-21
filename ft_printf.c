@@ -154,10 +154,10 @@ void 	do_format(t_params *params, va_list args)
 int		ft_printf(const char *str, ...)
 {
 	va_list		args;
-	char 		flags[5] = {"#0- +"};
-	char 		decimal[11] = {"0123456789."};
-	char 		length[3] = {"hlL"};
-	char 		conv[11] = "cspdiouxXf%";
+	char 		flags[6] = "#0- +";
+	char 		decimal[12] = "0123456789.";
+	char 		length[4] = "hlL";
+	char 		conv[12] = "cspdiouxXf%";
 	int			count;
 	t_params	params;
 
