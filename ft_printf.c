@@ -123,9 +123,10 @@ void	default_params(t_params *params)
 
 void 	do_format(t_params *params, va_list args)
 {
-	char *buf;
-	char *tmp;
-	int len;
+	char	*buf;
+	char	*tmp;
+	int		len;
+	long	i;
 
 	if (params->conv == '%')
 		params->ret = ft_strdup("%");
@@ -133,10 +134,17 @@ void 	do_format(t_params *params, va_list args)
 		params->ret = ft_strdup(va_arg(args, char*));
 	if (params->conv == 'd')
 	{
+		i = va_arg(args, long);
 		if (params->length[0] == 'l')
-			params->ret = ft_strdup(ft_itoa(va_arg(args, long)));
+			params->ret = ft_strdup(ft_itoa(i));
 		else
-			params->ret = ft_strdup(ft_itoa(va_arg(args, int)));
+			params->ret = ft_strdup(ft_itoa((int)i));
+		if (i > 0 && params->plus)
+		{
+			tmp = params->ret;
+			params->ret = ft_strjoin("+", params->ret);
+			free(tmp);
+		}
 	}
 	if ((len = ft_strlen(params->ret)) < params->width)
 	{
@@ -196,6 +204,7 @@ int		ft_printf(const char *str, ...)
 			do_format(&params, args);
 			ft_putstr(params.ret);
 			count += ft_strlen(params.ret);
+//			free(params.ret);
 		}
 	}
 	va_end(args);
