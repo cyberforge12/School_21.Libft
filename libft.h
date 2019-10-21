@@ -23,6 +23,22 @@ typedef struct	s_list
 	struct s_list	*next;
 }				t_list;
 
+typedef struct 	s_params
+{
+	int 		arg_num;
+	int 		alt;
+	char 		pad;
+	int 		left;
+	int 		space;
+	int 		plus;
+	int 		width;
+	int 		arg;
+	char 		conv;
+	char 		*ret;
+	int 		precision;
+	char 		length[2];
+}				t_params;
+
 void			ft_bzero(void *s, size_t n);
 void			*ft_memccpy(void *dst, const void *src, int c, size_t n);
 void			*ft_memcpy(void *dst, const void *src, size_t n);
