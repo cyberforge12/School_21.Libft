@@ -23,7 +23,7 @@ SRC = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c f
 	  ft_strncat.c ft_strncmp.c ft_strncpy.c ft_strnequ.c ft_strnew.c ft_strnstr.c ft_strrchr.c ft_strsplit.c \
 	  ft_strstr.c ft_strsub.c ft_strtrim.c ft_tolower.c ft_toupper.c ft_lstnew.c ft_lstdelone.c ft_lstdel.c \
 	  ft_lstadd.c ft_lstiter.c ft_lstmap.c ft_lstpushback.c ft_isspace.c ft_clear_list.c ft_list_len.c ft_swap.c \
-	  ft_strsort.c ft_clear_table.c ft_printf.c
+	  ft_strsort.c ft_clear_table.c ft_printf.c ft_itoa_base.c
 
 OBJ = $(SRC:.c=.o)
 
