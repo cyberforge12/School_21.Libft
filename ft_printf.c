@@ -98,6 +98,32 @@ static void 	check_conversion(const char **str, t_params *params)
 		if (**str == types[i])
 		{
 			params->conv = **str;
+			if (**str == 'o' || **str == 'O')
+				params->base = 8;
+			else if (**str == 'd' || **str == 'i' || **str == 'u'
+				||**str == 'D')
+				params->base = 10;
+			else if (**str == 'x' || **str == 'X')
+				params->base = 16;
+			else if (**str == 'C')
+			{
+				params->length[0] = 'l';
+				params->length[1] = 0;
+				params->conv = 'c';
+			}
+			else if (**str == 'S')
+			{
+				params->length[0] = 'l';
+				params->length[1] = 0;
+				params->conv = 's';
+			}
+			else if (**str == 'p')
+			{
+				params->alt = 1;
+				params->length[0] = 'l';
+				params->length[1] = 0;
+				params->conv = 'x';
+			}
 			(*str)++;
 			break ;
 		}
@@ -132,13 +158,14 @@ void 	do_format(t_params *params, va_list args)
 		params->ret = ft_strdup("%");
 	if (params->conv == 's')
 		params->ret = ft_strdup(va_arg(args, char*));
-	if (params->conv == 'd')
+	if (params->conv == 'd' || params->conv == 'i' || params->conv == 'o'
+		|| params->conv == 'x')
 	{
 		i = va_arg(args, long);
 		if (params->length[0] == 'l')
-			params->ret = ft_strdup(ft_itoa(i));
+			params->ret = ft_strdup(ft_itoa_base(i, params->base));
 		else
-			params->ret = ft_strdup(ft_itoa((int)i));
+			params->ret = ft_strdup(ft_itoa_base(i, params->base));
 		if (i > 0 && params->plus)
 		{
 			tmp = params->ret;
@@ -156,8 +183,8 @@ void 	do_format(t_params *params, va_list args)
 			params->ret = ft_strjoin(params->ret, buf);
 		else
 			params->ret = ft_strjoin(buf, params->ret);
-		free(tmp);
-		free(buf);
+//		free(tmp);
+//		free(buf);
 	}
 }
 
