@@ -36,6 +36,7 @@ typedef struct 	s_params
 	char 		conv;
 	char 		*ret;
 	int 		precision;
+	int 		base;
 	char 		length[2];
 }				t_params;
 
@@ -105,5 +106,6 @@ void			ft_strsort(char *str);
 void			ft_swap(char *a, char *b);
 void			*ft_clear_table(char **array, int i);
 int				ft_printf(const char *str, ...);
+char 			*ft_itoa_base(int n, int base);
 
 #endif
