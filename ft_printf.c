@@ -147,32 +147,12 @@ void	default_params(t_params *params)
 
 }
 
-void 	do_format(t_params *params, va_list args)
+void 	do_format_width(t_params *params)
 {
+	int		len;
 	char	*buf;
 	char	*tmp;
-	int		len;
-	long	i;
 
-	if (params->conv == '%')
-		params->ret = ft_strdup("%");
-	if (params->conv == 's')
-		params->ret = ft_strdup(va_arg(args, char*));
-	if (params->conv == 'd' || params->conv == 'i' || params->conv == 'o'
-		|| params->conv == 'x')
-	{
-		i = va_arg(args, long);
-		if (params->length[0] == 'l')
-			params->ret = ft_itoa_base(i, params->base);
-		else
-			params->ret = ft_itoa_base(i, params->base);
-		if (i > 0 && params->plus)
-		{
-			tmp = params->ret;
-			params->ret = ft_strjoin("+", params->ret);
-			free(tmp);
-		}
-	}
 	if ((len = ft_strlen(params->ret)) < params->width)
 	{
 		params->width -= len;
@@ -186,6 +166,35 @@ void 	do_format(t_params *params, va_list args)
 		free(tmp);
 		free(buf);
 	}
+}
+
+void 	do_format(t_params *params, va_list args)
+{
+	char		*tmp;
+	long long	i;
+
+	if (params->conv == '%')
+		params->ret = ft_strdup("%");
+	if (params->conv == 'c')
+	{
+		params->ret = ft_strnew(1);
+		params->ret[0] = va_arg(args, int);
+	}
+	if (params->conv == 's')
+		params->ret = ft_strdup(va_arg(args, char*));
+	if (params->conv == 'd' || params->conv == 'i' || params->conv == 'o'
+		|| params->conv == 'x')
+	{
+		i = va_arg(args, long long);
+			params->ret = ft_itoa_base(i, params->base);
+		if (i > 0 && params->plus)
+		{
+			tmp = params->ret;
+			params->ret = ft_strjoin("+", params->ret);
+			free(tmp);
+		}
+	}
+	do_format_width(params);
 }
 
 
