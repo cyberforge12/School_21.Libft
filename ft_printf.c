@@ -163,9 +163,9 @@ void 	do_format(t_params *params, va_list args)
 	{
 		i = va_arg(args, long);
 		if (params->length[0] == 'l')
-			params->ret = ft_strdup(ft_itoa_base(i, params->base));
+			params->ret = ft_itoa_base(i, params->base);
 		else
-			params->ret = ft_strdup(ft_itoa_base(i, params->base));
+			params->ret = ft_itoa_base(i, params->base);
 		if (i > 0 && params->plus)
 		{
 			tmp = params->ret;
@@ -183,8 +183,8 @@ void 	do_format(t_params *params, va_list args)
 			params->ret = ft_strjoin(params->ret, buf);
 		else
 			params->ret = ft_strjoin(buf, params->ret);
-//		free(tmp);
-//		free(buf);
+		free(tmp);
+		free(buf);
 	}
 }
 
@@ -231,7 +231,7 @@ int		ft_printf(const char *str, ...)
 			do_format(&params, args);
 			ft_putstr(params.ret);
 			count += ft_strlen(params.ret);
-//			free(params.ret);
+			free(params.ret);
 		}
 	}
 	va_end(args);
