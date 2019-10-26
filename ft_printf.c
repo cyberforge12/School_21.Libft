@@ -183,10 +183,22 @@ void 	do_format(t_params *params, va_list args)
 	if (params->conv == 's')
 		params->ret = ft_strdup(va_arg(args, char*));
 	if (params->conv == 'd' || params->conv == 'i' || params->conv == 'o'
-		|| params->conv == 'x')
+		|| params->conv == 'x' || params->conv == 'X')
 	{
 		i = va_arg(args, long long);
-			params->ret = ft_itoa_base(i, params->base);
+		params->ret = ft_itoa_base(i, params->base);
+		if (params->conv == 'X')
+		{
+			tmp = params->ret;
+			while (*tmp)
+			{
+				if (*tmp >= 'a' && *tmp <= 'f')
+				{
+					*tmp += 'A' - 'a';
+					tmp++;
+				}
+			}
+		}
 		if (i > 0 && params->plus)
 		{
 			tmp = params->ret;
